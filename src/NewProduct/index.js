@@ -14,11 +14,14 @@ const NewProduct = () => {
         event.preventDefault();
         console.log(inputs);
 
+        const token = localStorage.getItem('token');
+
         await fetch('http://localhost:5000/produtos', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": "Bearer " + token
             },
             body: JSON.stringify(inputs)
         });

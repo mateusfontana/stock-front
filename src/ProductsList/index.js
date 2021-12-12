@@ -5,7 +5,13 @@ const ProductList = () => {
     const [products, setProducts] = useState([]);
 
     const getProducts = async () => {
-        const res = await fetch("http://localhost:5000/produtos");
+        const token = localStorage.getItem('token');
+
+        const res = await fetch("http://localhost:5000/produtos", {
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
         const data = await res.json();
 
         console.log(data)
@@ -14,8 +20,13 @@ const ProductList = () => {
     }
 
     const deleteProduct = async (id) => {
+        const token = localStorage.getItem('token');
+
         await fetch('http://localhost:5000/produtos/' + id, {
             method: 'DELETE',
+            headers: {
+                "Authorization": "Bearer " + token
+            }
         });
 
         getProducts();

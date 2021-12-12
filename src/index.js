@@ -5,17 +5,31 @@ import {
   Route
 } from "react-router-dom";
 
+import Login from './Login';
 import ProductsList from './ProductsList';
 import NewProduct from './NewProduct';
 import EditProduct from './EditProduct';
 
+const Header = () => (
+  <nav className="navbar navbar-dark bg-primary">
+    <div className="container">
+      <span className="navbar-brand mb-0 h1">Cadastro de Produtos</span>
+    </div>
+  </nav>
+)
+
 ReactDOM.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<ProductsList/>} />
-      <Route path="new" element={<NewProduct />} />
-      <Route path="edit" element={<EditProduct />} />
-    </Routes>
-  </BrowserRouter>,
+  <>
+    <Header />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/products" element={<ProductsList/>} />
+        <Route path="/products/new" element={<NewProduct />} />
+        <Route path="/products/edit" element={<EditProduct />} />
+      </Routes>
+    </BrowserRouter>
+  </>,
+
   document.getElementById('root')
 );

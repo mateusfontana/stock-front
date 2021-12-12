@@ -13,13 +13,15 @@ const NewProduct = ({product}) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(productInfo);
+        
+        const token = localStorage.getItem('token');
 
         await fetch('http://localhost:5000/produtos/' + productInfo.id, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": "Bearer " + token
             },
             body: JSON.stringify(productInfo)
         });
